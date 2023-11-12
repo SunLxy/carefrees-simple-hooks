@@ -2,7 +2,7 @@
   "name": "@carefrees/simple-hooks",
   "version": "0.0.0",
   "description": "",
-  "homepage": "https://sunlxy.github.io/carefrees-simple-reducer",
+  "homepage": "https://sunlxy.github.io/carefrees-simple-hooks",
   "author": "SunLxy <1011771396@qq.com>",
   "license": "ISC",
   "main": "lib/index.js",
