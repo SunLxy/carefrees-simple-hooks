@@ -1,0 +1,12 @@
+html,body{
+  padding: 0px;
+  margin: 0px;
+}
+html,body,#root,.wmde-markdown {
+  height: 100%;
+
+}
+.wmde-markdown {
+  padding: 20px;
+  box-sizing: border-box;
+}

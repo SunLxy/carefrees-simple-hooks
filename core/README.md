@@ -1,12 +1,6 @@
 # `simple-hooks`
 
-## 参数
-
-```ts
-
-```
-
-## 案例
+## useSimpleReducer
 
 ```tsx mdx:preview
 
@@ -17,7 +11,7 @@ const Demo = ()=>{
 
   const [store,dispatch,instance] =  useSimpleReducer({ value:"" })
   
-  console.log(store,dispatch,instance)
+  console.log("useSimpleReducer===>",store,dispatch,instance)
 
   return (<div>
     <input 
@@ -31,5 +25,40 @@ const Demo = ()=>{
 }
 
 export default Demo;
+
+```
+
+## Provider
+
+```tsx mdx:preview
+
+import React from "react";
+import { createSimpleContext, createSimpleProvider, createSimpleHooksContext } from "@carefrees/simple-hooks";
+
+const Context  = createSimpleContext({ value:"" })
+
+const Provider = createSimpleProvider({ Context })
+
+const useContext = createSimpleHooksContext(Context)
+
+const Demo = ()=>{
+  const [store,dispatch,instance] = useContext()
+  console.log("Provider===>",store,dispatch,instance)
+  return (<div>
+    <input 
+      value={store.value} 
+      onInput={(event)=>{
+        const value = event.target.value;
+        dispatch({ value })
+      }} 
+    />
+  </div>)
+}
+
+const Warp = ()=>{
+  return (<Provider initalValue={{ value:"" }} ><Demo /></Provider>)
+}
+
+export default Warp;
 
 ```
