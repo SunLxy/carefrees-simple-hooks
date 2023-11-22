@@ -30,7 +30,9 @@ export default Demo;
 
 ## Provider
 
-**案例一**
+📢：手动创建的状态管理和默认导出的状态管理不通用
+
+**案例一(创建状态管理)**
 
 ```tsx mdx:preview
 
@@ -93,7 +95,7 @@ export default Warp;
 
 <br/>
 
-**案例二**
+**案例二(使用默认导出状态管理)**
 
 ```tsx mdx:preview
 
