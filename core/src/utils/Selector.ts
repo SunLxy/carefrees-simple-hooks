@@ -21,7 +21,6 @@ export class Utils_Selector {
   selectorMaps: Map<Symbol | Object, Utils_SelectorListItemType> = new Map([])
   /**
     * 基础创建方法=====>注册 选择器函数，存储状态中提取数据以供此组件
-    * @param selectorMapField  执行器方法集合存储 字段
     * @param key  map集合 设置值的唯一key值
     * @param selectorFn  获取最新数据的 执行方法
     * @param updateData  组件更新方法
@@ -44,19 +43,18 @@ export class Utils_Selector {
   }
   /**
    * 基础创建方法=====> 数据更新,执行选择器
-   * @param selectorMapField  执行器方法集合存储 字段
-   * @param storeField  操作数据存储 字段
+   * @param updateAll  是否更新所有
    * 
   */
-  _Utils_create_bathRunSelector = () => {
+  _Utils_create_bathRunSelector = (updateAll: boolean = false) => {
     this.selectorMaps.forEach((item) => {
       const newValue = item.selector(this)
       let isNoUpdate = false
-      if (typeof item.equalityFn === "function") {
+      if (typeof item.equalityFn === "function" && !updateAll) {
         isNoUpdate = item.equalityFn?.(item.preValue, newValue)
       }
       item.preValue = newValue;
-      if (!isNoUpdate) {
+      if (!isNoUpdate || updateAll) {
         item.updateData(newValue)
       }
     })
@@ -64,8 +62,6 @@ export class Utils_Selector {
 
   /**
    * 基础创建方法=====>选择器 获取值
-   * @param selectorMapField  执行器方法集合存储 字段
-   * @param storeField  操作数据存储 字段
    * @param key   从 map集合 取值唯一key值
    * */
   _Utils_create_getSelectorValue = (key: Object | Symbol) => {

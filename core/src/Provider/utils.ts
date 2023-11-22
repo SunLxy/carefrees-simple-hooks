@@ -15,15 +15,19 @@ export class ProviderInstance<T> extends Utils_Selector {
   }
 
   /**更新值*/
-  update = (data: Partial<T>, isUpdate = true) => {
+  update = (data: Partial<T>, isUpdate = true, updateAll = false) => {
     if (Object.prototype.toString.call(data) === "[object Object]") {
       Object.entries(data).forEach(([key, value]) => {
         this.store[key] = value
       })
-      if (Object.keys(data).length && isUpdate)
+      if (Object.keys(data).length && isUpdate && !updateAll)
         this._Utils_create_bathRunSelector()
     }
+    if (updateAll) {
+      this._Utils_create_bathRunSelector(updateAll)
+    }
   }
+
   /**获取值*/
   getValue = () => {
     return this.store
