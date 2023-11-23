@@ -40,22 +40,63 @@ export const createSimpleHooksContext = <T extends {} = any>(Context: CreateSimp
 export const createSimpleHooksSelector = <T extends {} = any>(instance: (simple?: ProviderInstance<T>) => ProviderInstance<T>[]) => {
   return Utils_createSelectorHook<(simple?: ProviderInstance<T>) => ProviderInstance<T>[], T>(instance)
 }
-// ====================默认使用================================
-const SimpleContext = createSimpleContext()
 
-/**
- * Provider
- * @description 默认创建
-*/
-export const SimpleProvider = createSimpleProvider(SimpleContext)
-/**
- * useContext 
- * @description 默认创建
-**/
-export const useSimpleContext = createSimpleHooksContext(SimpleContext)
-/**
- * Selector  
- * @description 默认创建
-*/
-export const useSimpleSelector = createSimpleHooksSelector(useSimpleContext)
+/**创建导出 SimpleContext、SimpleProvider，useSimpleContext，useSimpleSelector*/
+export const createSimpleContextHooks = () => {
+  // ====================默认使用================================
+  const SimpleContext = createSimpleContext()
+  /**
+   * Provider
+   * @description 默认创建
+  */
+  const SimpleProvider = createSimpleProvider(SimpleContext)
+  /**
+   * useContext 
+   * @description 默认创建
+  **/
+  const useSimpleContext = createSimpleHooksContext(SimpleContext)
+  /**
+   * Selector  
+   * @description 默认创建
+  */
+  const useSimpleSelector = createSimpleHooksSelector(useSimpleContext)
+
+  return {
+    /**创建状态存储*/
+    SimpleContext,
+    /**
+    * Provider
+    * @description 默认创建
+   */
+    SimpleProvider,
+    /**
+   * useContext 
+   * @description 默认创建
+  **/
+    useSimpleContext,
+    /**
+    * Selector  
+    * @description 默认创建
+    */
+    useSimpleSelector
+  }
+}
+export const { SimpleProvider, useSimpleContext, useSimpleSelector } = createSimpleContextHooks()
+// // ====================默认使用================================
+// const SimpleContext = createSimpleContext()
+// /**
+//  * Provider
+//  * @description 默认创建
+// */
+// export const SimpleProvider = createSimpleProvider(SimpleContext)
+// /**
+//  * useContext 
+//  * @description 默认创建
+// **/
+// export const useSimpleContext = createSimpleHooksContext(SimpleContext)
+// /**
+//  * Selector  
+//  * @description 默认创建
+// */
+// export const useSimpleSelector = createSimpleHooksSelector(useSimpleContext)
 
